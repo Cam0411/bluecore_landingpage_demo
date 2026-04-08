@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --color-brand-dark: #0b0437;
+  --color-brand-primary: #6366f1;
+  --color-brand-secondary: #10b981;
+  --color-brand-accent: #f43f5e;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-[#0b0437] font-sans antialiased selection:bg-indigo-500/30;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight text-[#0b0437];
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .glass-panel {
+    @apply bg-white/40 backdrop-blur-xl border border-black/[0.05] shadow-xl;
+  }
+  .glow-border {
+    position: relative;
+  }
+  .glow-border::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(to right, rgba(99, 102, 241, 0.3), rgba(16, 185, 129, 0.3));
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .glow-border:hover::after {
+    opacity: 1;
+  }
+  .bg-grid {
+    background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+  }
+  .vibrant-gradient {
+    background: radial-gradient(circle at 80% 20%, rgba(255, 0, 128, 0.15), transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 128, 0, 0.15), transparent 40%),
+                radial-gradient(circle at 10% 50%, rgba(0, 128, 255, 0.1), transparent 50%);
+  }
+}
